@@ -1,5 +1,11 @@
 package com.example.bsgamestatefinal;
 
+/** @author Daniel Co
+ * @author Kyle Sanchez
+ * @author Gianni Magliana
+ * @author William Leung
+ * **/
+
 public class BSShip {
     private int shipHealth;
     private int shipHits;

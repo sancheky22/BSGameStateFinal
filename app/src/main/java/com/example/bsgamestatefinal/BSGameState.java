@@ -1,5 +1,10 @@
 package com.example.bsgamestatefinal;
 
+/** @author Daniel Co
+ * @author Kyle Sanchez
+ * @author Gianni Magliana
+ * @author William Leung
+ * **/
 public class BSGameState {
 
 
@@ -127,9 +132,9 @@ public class BSGameState {
     @Override
     public String toString() {
 
-        return "P1 Hits: "+this.p1TotalHits+"P2 Hits: "+this.p2TotalHits
-                +"Player Turn:"+this.playerTurn+"P1 Ships Alive: "+this.p1ShipsAlive +"P2 Ships Alive: "+this.p2ShipsAlive
-                +"P1 Ships Sunk: "+this.p1ShipsSunk+"P2 Ships Sunk: "+this.p2ShipsSunk+"Phase:"+this.phaseOfGame;
+        return "P1 Hits: "+this.p1TotalHits+" P2 Hits: "+this.p2TotalHits
+                +" Player Turn:"+this.playerTurn+" P1 Ships Alive: "+this.p1ShipsAlive +" P2 Ships Alive: "+this.p2ShipsAlive
+                +" P1 Ships Sunk: "+this.p1ShipsSunk+" P2 Ships Sunk: "+this.p2ShipsSunk+" Phase:"+this.phaseOfGame;
 
 
     }

@@ -8,6 +8,12 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 
+/** @author Daniel Co
+ * @author Kyle Sanchez
+ * @author Gianni Magliana
+ * @author William Leung
+ * **/
+
 public class MainActivity extends AppCompatActivity {
 
     private EditText multiLineText;
@@ -57,7 +63,9 @@ public class MainActivity extends AppCompatActivity {
             //verify both toString calls are identical, print both strings to multiLineText
             boolean equals = instance2String.equals(instance4String); //check if instance 2 is the same as instance 4
             if (equals){
+                multiLineText.append("SecondInstance: \n");
                 multiLineText.append(instance2String +"\n");
+                multiLineText.append("FourthInstance: \n");
                 multiLineText.append(instance4String +"\n");
             } else{
                 multiLineText.append("Error: instances 2 and 4 do not match.\n");
