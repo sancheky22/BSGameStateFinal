@@ -32,7 +32,7 @@ public class BSGameState {
         this.shotLocations = null;
         this.shipLocations = null;
         this.shipType = 1;
-        this.board = new String[10][20];
+        this.board = new String[10][10];
         //this.player1=new HumanPlayer;
         //this.player2=new ComputerPlayer;
 
@@ -153,7 +153,8 @@ public class BSGameState {
     /**
      * toString method: describes the state of the game as a string
      **/
-    public String toString(BSGameState gameState) {
+    @Override
+    public String toString() {
         String gameInfo = new String("");
         return gameInfo; //default return value
     }
