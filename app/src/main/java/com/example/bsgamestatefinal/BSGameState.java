@@ -155,8 +155,8 @@ public class BSGameState {
      **/
     @Override
     public String toString() {
-        String gameInfo = new String("");
-        return gameInfo; //default return value
+        return this.playerNum+""+this.p2TotalHits+""+this.p1TotalHits+""+this.playerNum+this.boatHealth+""+this.shipType+""+this.shipsAlive+""+this.shipsSunk;
+
     }
 }
 
