@@ -6,35 +6,38 @@ public class BSGameState {
     private int p1TotalHits;
     private int p2TotalHits;
     private int playerTurn;
-    private int shipsAlive;
-    private int shipsSunk;
-    private int playerNum;
+    private int p1ShipsAlive;
+    private int p1ShipsSunk;
+    private int p2ShipsAlive;
+    private int p2ShipsSunk;
+    //private int playerNum;
     private int boatHealth;
     private boolean isHit;
     private String phaseOfGame;
     private String[][] shipLocations;
     private boolean isVisible;
     private String[][] shotLocations;
-    private int shipType;
-    private String[][] board;
-    //private GamePlayer player1;
-    //private GamePlayer player2;
+
+    private BSLocation[][] p1Board;
+    private BSLocation[][] p2Board;
+
 
 
     public BSGameState() {
         this.playerTurn = 1;
         this.p1TotalHits = 0;
         this.p2TotalHits = 0;
-        this.shipsAlive = 10;
-        this.shipsSunk = 0;
+        this.p1ShipsAlive = 10;
+        this.p1ShipsSunk = 0;
+        this.p2ShipsAlive = 10;
+        this.p2ShipsSunk = 0;
         this.isHit = false;
         this.phaseOfGame = "SetUp";
         this.shotLocations = null;
         this.shipLocations = null;
-        this.shipType = 1;
-        this.board = new String[10][10];
-        //this.player1=new HumanPlayer;
-        //this.player2=new ComputerPlayer;
+        this.p1Board = new BSLocation[10][10];
+        this.p2Board=new BSLocation[10][10];
+
 
     }
 
@@ -44,14 +47,16 @@ public class BSGameState {
         this.playerTurn = 1;
         this.p1TotalHits = 0;
         this.p2TotalHits = 0;
-        this.shipsAlive = 10;
-        this.shipsSunk = 0;
+        this.p1ShipsAlive = 10;
+        this.p1ShipsSunk = 0;
+        this.p2ShipsAlive = 10;
+        this.p2ShipsSunk = 0;
         this.isHit = false;
         this.phaseOfGame = "SetUp";
         this.shotLocations = null;
         this.shipLocations = null;
-        this.shipType = 1;
-        this.board = new String[10][10];
+        this.p1Board = new BSLocation[10][10];
+        this.p2Board=new BSLocation[10][10];
 
         // copy the player-to-move information
 
@@ -119,6 +124,14 @@ public class BSGameState {
         this.playerTurn = playerTurn;
     }
 
+    @Override
+    public String toString() {
+        String gameInfo = new String("");
+
+        return gameInfo; //default return value
+    }
+}
+
 
     /**
      * fire method: take board as parameter & fire on selected coordinates, return true if successful fire
@@ -153,12 +166,7 @@ public class BSGameState {
     /**
      * toString method: describes the state of the game as a string
      **/
-    @Override
-    public String toString() {
-        String gameInfo = new String("");
-        return gameInfo; //default return value
-    }
-}
+
 
 
     /**
