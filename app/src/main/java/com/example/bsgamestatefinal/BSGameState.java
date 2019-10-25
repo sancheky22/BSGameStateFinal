@@ -8,23 +8,22 @@ package com.example.bsgamestatefinal;
 public class BSGameState {
 
 
-    private int p1TotalHits;
-    private int p2TotalHits;
-    private int playerTurn;
-    private int p1ShipsAlive;
-    private int p1ShipsSunk;
-    private int p2ShipsAlive;
-    private int p2ShipsSunk;
-    //private int playerNum;
-    private int boatHealth;
-    private boolean isHit;
-    private String phaseOfGame;
-    private String[][] shipLocations;
-    private boolean isVisible;
-    private String[][] shotLocations;
-
-    private BSLocation[][] p1Board;
-    private BSLocation[][] p2Board;
+    public int p1TotalHits;
+    public int p2TotalHits;
+    public int playerTurn;
+    public int p1ShipsAlive;
+    public int p1ShipsSunk;
+    public int p2ShipsAlive;
+    public int p2ShipsSunk;
+    //public int playerNum;
+    public int boatHealth;
+    public boolean isHit;
+    public String phaseOfGame;
+    public String[][] shipLocations;
+    public boolean isVisible;
+    public String[][] shotLocations;
+    public BSLocation[][] p1Board;
+    public BSLocation[][] p2Board;
 
 
 
@@ -128,6 +127,11 @@ public class BSGameState {
     public void setPlayerTurn(int playerTurn) {
         this.playerTurn = playerTurn;
     }
+
+    public boolean fire(String[][] bsBoard) {
+        return false; // default return value
+    }
+    
 
     @Override
     public String toString() {
