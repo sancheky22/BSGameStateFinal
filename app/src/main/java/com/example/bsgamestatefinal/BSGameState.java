@@ -26,7 +26,6 @@ public class BSGameState {
     public BSLocation[][] p2Board;
 
 
-
     public BSGameState() {
         this.playerID = 0;
         this.p1TotalHits = 0;
@@ -60,7 +59,7 @@ public class BSGameState {
         this.shotLocations = null;
         this.shipLocations = null;
         this.p1Board = new BSLocation[10][10];
-        this.p2Board=new BSLocation[10][10];
+        this.p2Board = new BSLocation[10][10];
 
         // copy the player-to-move information
 
@@ -137,14 +136,16 @@ public class BSGameState {
             for (int row = ship.gety1(); row == ship.gety2(); row++) {
                 for (int col = ship.getx1(); row == ship.getx2(); col++) {
                     if (playerNum == 0) {
-                        this.p1Board[row][col].setspot(2);
+                        this.p1Board[row][col].setSpot(2);
                     } else {
-                        this.p2Board[row][col].setspot(2);
+                        this.p2Board[row][col].setSpot(2);
                     }
                 }
             }
         }
+        return false;
     }
+
 
     public int checkSpot(BSLocation location){
         if(location.isWater){
