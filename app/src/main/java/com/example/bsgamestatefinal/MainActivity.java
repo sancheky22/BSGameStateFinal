@@ -72,13 +72,11 @@ public class MainActivity extends AppCompatActivity {
             String check1 = firstInstance.spotString(1,1, firstInstance.getPlayerID());
             multiLineText.append("Check coordinates 1,1.\n");
             multiLineText.append(check1 + "\n");
-
             BSGameState thirdInstance = new BSGameState(); //create another GameState instance using default constructor
             BSGameState fourthInstance = new BSGameState(thirdInstance); //create copy of thirdInstance
 
             String instance2String = secondInstance.toString(); //call toString on secondInstance
             String instance4String = fourthInstance.toString(); //call toString on fourthInstance
-
             //verify both toString calls are identical, print both strings to multiLineText
             boolean equals = instance2String.equals(instance4String); //check if instance 2 is the same as instance 4
             if (equals){

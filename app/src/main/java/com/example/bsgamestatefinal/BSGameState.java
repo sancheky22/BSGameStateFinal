@@ -53,19 +53,19 @@ public class BSGameState {
 
     // Copy Constructor
     public BSGameState(BSGameState original) {
-        this.playerID = 0;
-        this.p1TotalHits = 0;
-        this.p2TotalHits = 0;
-        this.p1ShipsAlive = 10;
-        this.p1ShipsSunk = 0;
-        this.p2ShipsAlive = 10;
-        this.p2ShipsSunk = 0;
-        this.isHit = false;
-        this.phaseOfGame = "SetUp";
-        this.shotLocations = null;
-        this.shipLocations = null;
-        this.p1Board = new BSLocation[10][10];
-        this.p2Board = new BSLocation[10][10];
+        this.playerID = original.playerID;
+        this.p1TotalHits = original.p1TotalHits;
+        this.p2TotalHits = original.p2TotalHits;
+        this.p1ShipsAlive = original.p1ShipsAlive;
+        this.p1ShipsSunk = original.p1ShipsSunk;
+        this.p2ShipsAlive = original.p2ShipsAlive;
+        this.p2ShipsSunk = original.p2ShipsSunk;
+        this.isHit = original.isHit;
+        this.phaseOfGame = original.phaseOfGame;
+        this.shotLocations = original.shotLocations;
+        this.shipLocations = original.shipLocations;
+        this.p1Board = original.p1Board;
+        this.p2Board = original.p2Board;
 
         for (int row = 0; row < 10; row++){
             for (int col = 0; col < 10; col++){
@@ -289,14 +289,6 @@ public class BSGameState {
         return spot;
     }
 }
-
-    /**
-     * fire method: take board as parameter & fire on selected coordinates, return true if successful fire
-     **/
-    //public boolean fire(String[][] bsBoard) {
-    // return false; // default return value
-    //}
-
 
 /**
  * placeShip method: place a ship using given coordinates, return true if ship is placed successfully
