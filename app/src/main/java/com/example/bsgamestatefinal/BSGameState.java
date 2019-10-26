@@ -10,7 +10,7 @@ public class BSGameState {
 
     public int p1TotalHits;
     public int p2TotalHits;
-    public int playerTurn;
+    public int playerID;
     public int p1ShipsAlive;
     public int p1ShipsSunk;
     public int p2ShipsAlive;
@@ -26,9 +26,8 @@ public class BSGameState {
     public BSLocation[][] p2Board;
 
 
-
     public BSGameState() {
-        this.playerTurn = 1;
+        this.playerID = 0;
         this.p1TotalHits = 0;
         this.p2TotalHits = 0;
         this.p1ShipsAlive = 10;
@@ -40,7 +39,7 @@ public class BSGameState {
 
         this.shipLocations = null;
         this.p1Board = new BSLocation[10][10];
-        this.p2Board=new BSLocation[10][10];
+        this.p2Board = new BSLocation[10][10];
 
 
     }
@@ -48,7 +47,7 @@ public class BSGameState {
 
     // Copy Constructor
     public BSGameState(BSGameState original) {
-        this.playerTurn = 1;
+        this.playerID = 0;
         this.p1TotalHits = 0;
         this.p2TotalHits = 0;
         this.p1ShipsAlive = 10;
@@ -60,7 +59,7 @@ public class BSGameState {
         this.shotLocations = null;
         this.shipLocations = null;
         this.p1Board = new BSLocation[10][10];
-        this.p2Board=new BSLocation[10][10];
+        this.p2Board = new BSLocation[10][10];
 
         // copy the player-to-move information
 
@@ -89,7 +88,7 @@ public class BSGameState {
    /* //public void setBoat(Ship shipType, int ship) { return this.shipType; }
     public boolean rotate(int playerID, int shipType, String xCoord, String yCoord, BSGameState gameState) {
         boolean valid = false;
-        if (playerID == gameState.getPlayerTurn()) {
+        if (playerID == gameState.getplayerID()) {
             switch (shipType) {
                 case 1: //code
                     valid = true;
@@ -119,66 +118,94 @@ public class BSGameState {
     }*/
 
     // gets which players turn it is
-    public int getPlayerTurn() {
-        return this.playerTurn;
+    public int getPlayerID() {
+        return this.playerID;
     }
 
     // sets current players turn
-    public void setPlayerTurn(int playerTurn) {
-        this.playerTurn = playerTurn;
+    public void setplayerID(int playerID) {
+        this.playerID = playerID;
     }
 
     public boolean fire(String[][] bsBoard) {
         return false; // default return value
     }
 
-    public void setSpot(int spotType){
-        if(spotType==2){
-            this.isShip=true;
 
-            this.isHit=false;
-            this.isMiss=false;
-            this.isWater=false;
+
+    public int checkSpot(BSLocation location){
+        if(location.isWater){
+            return 1;
         }
-        if(spotType==3){
-            this.isHit=true;
-
-            this.isShip=false;
-            this.isWater=false;
-            this.isMiss=false;
+        else if(location.isShip){
+            return 2;
         }
-        if(spotType==4){
-            this.isMiss=true;
-
-            this.isShip=false;
-            this.isHit=false;
-            this.isWater=false;
+        else if(location.isHit){
+            return 3;
+        }
+        else if(location.isMiss){
+            return 4;
+        }
+        else{
+            return 0;
         }
     }
 
     @Override
     public String toString() {
 
-        return "P1 Hits: "+this.p1TotalHits+" P2 Hits: "+this.p2TotalHits
-                +" Player Turn:"+this.playerTurn+" P1 Ships Alive: "+this.p1ShipsAlive +" P2 Ships Alive: "+this.p2ShipsAlive
-                +" P1 Ships Sunk: "+this.p1ShipsSunk+" P2 Ships Sunk: "+this.p2ShipsSunk+" Phase:"+this.phaseOfGame;
+        return "P1 Hits: " + this.p1TotalHits + " P2 Hits: " + this.p2TotalHits
+                + " Player Turn:" + this.playerID + " P1 Ships Alive: " + this.p1ShipsAlive + " P2 Ships Alive: " + this.p2ShipsAlive
+                + " P1 Ships Sunk: " + this.p1ShipsSunk + " P2 Ships Sunk: " + this.p2ShipsSunk + " Phase:" + this.phaseOfGame;
 
 
     }
+
+
+    //fire method
+    public boolean fire(int x, int y) {
+
+        if (this.getPlayerID() == 0) {
+            BSLocation temp = this.p1Board[y][x];
+            if (checkSpot(temp) == 3 || checkSpot(temp) == 4) {
+                this.p1Board[y][x] = temp;
+                return false;
+            } else if (checkSpot(temp) == 2) {
+                this.p1TotalHits = this.p1TotalHits + 1;
+                temp.setSpot(3);
+                this.p1Board[y][x] = temp;
+                return true;
+            } else if (checkSpot(temp) == 1) {
+                temp.setSpot(4);
+                this.p1Board[y][x] = temp;
+                return false;
+            }
+        } else if (this.getPlayerID() == 1) {
+            BSLocation temp = this.p2Board[y][x];
+            if (checkSpot(temp) == 3 || checkSpot(temp) == 4) {
+                this.p2Board[y][x] = temp;
+                return false;
+            } else if (checkSpot(temp) == 2) {
+                this.p2TotalHits = this.p2TotalHits + 1;
+                temp.setSpot(3);
+                this.p2Board[y][x] = temp;
+                return true;
+            } else if (checkSpot(temp) == 1) {
+                temp.setSpot(4);
+                this.p2Board[y][x] = temp;
+                return false;
+            }
+        }
+        return false;
+    }
+
 }
 
 
-    /**
-     * fire method: take board as parameter & fire on selected coordinates, return true if successful fire
-     **/
-    //public boolean fire(String[][] bsBoard) {
-    // return false; // default return value
-    //}
 
-
-    /**
-     * placeShip method: place a ship using given coordinates, return true if ship is placed successfully
-     */
+/**
+ * placeShip method: place a ship using given coordinates, return true if ship is placed successfully
+ */
     //public boolean placeShip(int playerID, int shipType, String xCoord, String yCoord, BSGameState gameState) {
     //return false; // default return value
     // }

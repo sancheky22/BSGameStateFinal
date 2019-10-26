@@ -21,21 +21,27 @@ public class BSLocation {
         this.isMiss=false;
     }
 
-    public int checkSpot(BSLocation location){
-        if(location.isWater){
-            return 1;
+    public void setSpot(int spotType) {
+        if (spotType == 2) {
+            this.isShip = true;
+
+            this.isHit = false;
+            this.isMiss = false;
+            this.isWater = false;
         }
-        else if(location.isShip){
-            return 2;
+        if (spotType == 3) {
+            this.isHit = true;
+
+            this.isShip = false;
+            this.isWater = false;
+            this.isMiss = false;
         }
-        else if(location.isHit){
-            return 3;
-        }
-        else if(location.isMiss){
-            return 4;
-        }
-        else{
-            return 0;
+        if (spotType == 4) {
+            this.isMiss = true;
+
+            this.isShip = false;
+            this.isHit = false;
+            this.isWater = false;
         }
     }
 
