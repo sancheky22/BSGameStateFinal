@@ -1,10 +1,11 @@
 package com.example.bsgamestatefinal;
 
-/** @author Daniel Co
+/**
+ * @author Daniel Co
  * @author Kyle Sanchez
  * @author Gianni Magliana
  * @author William Leung
- * **/
+ **/
 
 public class BSLocation {
     public boolean isWater;
@@ -14,20 +15,26 @@ public class BSLocation {
 
     public BSGameState myGameState;
 
-    public BSLocation(){
-        this.isWater=true;
-        this.isShip=false;
-        this.isHit=false;
-        this.isMiss=false;
+    public BSLocation() {
+        this.isWater = true;
+        this.isShip = false;
+        this.isHit = false;
+        this.isMiss = false;
     }
 
-    public BSLocation(BSLocation original){
-        this.isWater=original.isWater;
-        this.isShip=original.isShip;
-        this.isHit=original.isHit;
-        this.isMiss=original.isMiss;
+    public BSLocation(BSLocation original) {
+        this.isWater = original.isWater;
+        this.isShip = original.isShip;
+        this.isHit = original.isHit;
+        this.isMiss = original.isMiss;
     }
 
+    /**
+     * to be called on a location object residing in gameState location array.
+     * Example: gameState.p1Board[][].setSpot(2) will set isShip boolean true and set isMiss, isHit, and isWater false
+     * When the input is set true, the rest will be false so checkspot can later determine what to tell GUI to do
+     * isWater is by default true and will never need to be set again
+     */
     public void setSpot(int spotType) {
         if (spotType == 2) {
             this.isShip = true;
@@ -51,12 +58,6 @@ public class BSLocation {
             this.isWater = false;
         }
     }
-
-    /**to be called on a location object residing in gameState location array.
-     *  Example: gameState.p1Board[][].setSpot(2) will set isShip boolean true and set isMiss, isHit, and isWater false
-     *  When the input is set true, the rest will be false so checkspot can later determine what to tell GUI to do
-     *  isWater is by default true and will never need to be set again
-     */
 
 
 }

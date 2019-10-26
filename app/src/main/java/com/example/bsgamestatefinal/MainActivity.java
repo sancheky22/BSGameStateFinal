@@ -8,11 +8,12 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 
-/** @author Daniel Co
+/**
+ * @author Daniel Co
  * @author Kyle Sanchez
  * @author Gianni Magliana
  * @author William Leung
- * **/
+ **/
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,7 +31,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    /** runTestListener: listener for run test button **/
+    /**
+     * runTestListener: listener for run test button
+     **/
     private OnClickListener runTestListener = new OnClickListener() {
         public void onClick(View v) {
             /**
@@ -66,10 +69,10 @@ public class MainActivity extends AppCompatActivity {
             multiLineText.append("Place carrier row 1, place destroyer row 2, place cruiser row 3, place submarine row 4.\n");
             //call fire method to hit ship
             firstInstance.setPlayerID(0);
-            firstInstance.fire(1,1);
+            firstInstance.fire(1, 1);
             multiLineText.append("Fire at coordinates 1,1. Changes values of location.\n");
             //call spotString
-            String check1 = firstInstance.spotString(1,1, firstInstance.getPlayerID());
+            String check1 = firstInstance.spotString(1, 1, firstInstance.getPlayerID());
             multiLineText.append("Check coordinates 1,1.\n");
             multiLineText.append(check1 + "\n");
             BSGameState thirdInstance = new BSGameState(); //create another GameState instance using default constructor
@@ -79,12 +82,12 @@ public class MainActivity extends AppCompatActivity {
             String instance4String = fourthInstance.toString(); //call toString on fourthInstance
             //verify both toString calls are identical, print both strings to multiLineText
             boolean equals = instance2String.equals(instance4String); //check if instance 2 is the same as instance 4
-            if (equals){
+            if (equals) {
                 multiLineText.append("SecondInstance: \n");
-                multiLineText.append(instance2String +"\n");
+                multiLineText.append(instance2String + "\n");
                 multiLineText.append("FourthInstance: \n");
-                multiLineText.append(instance4String +"\n");
-            } else{
+                multiLineText.append(instance4String + "\n");
+            } else {
                 multiLineText.append("Error: instances 2 and 4 do not match.\n");
             }
 
