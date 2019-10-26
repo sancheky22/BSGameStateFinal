@@ -41,6 +41,12 @@ public class BSGameState {
         this.p1Board = new BSLocation[10][10];
         this.p2Board = new BSLocation[10][10];
 
+        for (int row = 0; row < 10; row++){
+            for (int col = 0; col < 10; col++){
+                this.p1Board[row][col] = new BSLocation();
+                this.p2Board[row][col] = new BSLocation();
+            }
+        }
 
     }
 
@@ -60,6 +66,13 @@ public class BSGameState {
         this.shipLocations = null;
         this.p1Board = new BSLocation[10][10];
         this.p2Board = new BSLocation[10][10];
+
+        for (int row = 0; row < 10; row++){
+            for (int col = 0; col < 10; col++){
+                this.p1Board[row][col] = original.p1Board[row][col];
+                this.p2Board[row][col] = original.p2Board[row][col];
+            }
+        }
 
         // copy the player-to-move information
 
@@ -127,48 +140,47 @@ public class BSGameState {
         this.playerID = playerID;
     }
 
-    public boolean fire(String[][] bsBoard) {
-        return false; // default return value
-    }
+
 
     public boolean addShip(int playerNum, BSShip ship) {
-        if (playerNum == this.getPlayerID()) {
-            for (int row = ship.gety1(); row == ship.gety2(); row++) {
-                for (int col = ship.getx1(); row == ship.getx2(); col++) {
+        //if (playerNum == this.getPlayerID()) {
+            for (int row = ship.gety1(); row < ship.gety2(); row++) {
+                for (int col = ship.getx1(); row < ship.getx2(); col++) {
                     if (playerNum == 0) {
-                        this.p1Board[row][col].setSpot(2);
+                        this.p1Board[row-1][col-1].setSpot(2);
                     } else {
-                        this.p2Board[row][col].setSpot(2);
+                        this.p2Board[row-1][col-1].setSpot(2);
                     }
                 }
             }
-            return true;
-        } else {
             return false;
-        }
-    }
+        } //else {
+           //return false;
+
+
+
 
 
     public int checkSpot(int x, int y, int playerNum) {
         if (this.playerID == playerNum && playerNum == 0) {
-            if (p1Board[y][x].isWater) {
+            if (this.p1Board[y][x].isWater) {
                 return 1;
-            } else if (p1Board[y][x].isShip) {
+            } else if (this.p1Board[y][x].isShip) {
                 return 2;
-            } else if (p1Board[y][x].isHit) {
+            } else if (this.p1Board[y][x].isHit) {
                 return 3;
-            } else if (p1Board[y][x].isMiss) {
+            } else if (this.p1Board[y][x].isMiss) {
                 return 4;
             }
         }
         if (this.playerID == playerNum && playerNum == 1) {
-            if (p2Board[y][x].isWater) {
+            if (this.p2Board[y][x].isWater) {
                 return 1;
-            } else if (p2Board[y][x].isShip) {
+            } else if (this.p2Board[y][x].isShip) {
                 return 2;
-            } else if (p2Board[y][x].isHit) {
+            } else if (this.p2Board[y][x].isHit) {
                 return 3;
-            } else if (p2Board[y][x].isMiss) {
+            } else if (this.p2Board[y][x].isMiss) {
                 return 4;
             }
         }
@@ -184,19 +196,19 @@ public class BSGameState {
     }
 
     public boolean addAllShips(int playerNum) {
-        if (this.playerID == playerNum) {
+        //if (this.playerID == playerNum) {
             BSShip carrier = new BSShip(1, 5, 1, 1, playerNum, 5);
             BSShip destroyer = new BSShip(1, 4, 2, 2, playerNum, 4);
             BSShip cruiser = new BSShip(1, 3, 3, 3, playerNum, 3);
             BSShip submarine = new BSShip(1, 2, 4, 4, playerNum, 2);
 
-            addShip(playerNum, carrier);
-            addShip(playerNum, destroyer);
-            addShip(playerNum, cruiser);
-            addShip(playerNum, submarine);
+            this.addShip(playerNum, carrier);
+            this.addShip(playerNum, destroyer);
+            this.addShip(playerNum, cruiser);
+            this.addShip(playerNum, submarine);
 
-            return true;
-        }
+            //return true;
+        //}
 
         return false;
     }
@@ -214,21 +226,22 @@ public class BSGameState {
 
 
     //fire method
-    public boolean fire(int x, int y) {
+    public boolean fire(int y, int x) {
 
         if (this.getPlayerID() == 0) {
-            BSLocation temp = this.p1Board[y][x];
+            BSLocation temp = new BSLocation(this.p1Board[y][x]);
+
             if (checkSpot(x, y, 0) == 3 || checkSpot(x, y, 0) == 4) {
                 this.p1Board[y][x] = temp;
                 return false;
             } else if (checkSpot(x, y, 0) == 2) {
-                this.p1TotalHits = this.p1TotalHits + 1;
+                this.p1TotalHits +=1;
                 temp.setSpot(3);
                 this.p1Board[y][x] = temp;
                 return true;
             } else if (checkSpot(x, y, 0) == 1) {
                 temp.setSpot(4);
-                this.p1Board[y][x] = temp;
+                this.p1Board[y][x]= temp;
                 return false;
             }
         } else if (this.getPlayerID() == 1) {
@@ -237,7 +250,7 @@ public class BSGameState {
                 this.p2Board[y][x] = temp;
                 return false;
             } else if (checkSpot(x, y, 1) == 2) {
-                this.p2TotalHits = this.p2TotalHits + 1;
+                this.p2TotalHits +=1;
                 temp.setSpot(3);
                 this.p2Board[y][x] = temp;
                 return true;
@@ -253,6 +266,7 @@ public class BSGameState {
 
     public String spotString(int x, int y, int playerNum) {
         String spot = new String("");
+        if(this.playerID==playerNum && playerNum==0)
         switch (checkSpot(x, y, playerNum)) {
             case 1:
                 spot = "Location " + y + "," + x + " is Water";

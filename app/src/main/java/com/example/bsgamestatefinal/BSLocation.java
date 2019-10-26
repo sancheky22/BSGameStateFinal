@@ -21,6 +21,13 @@ public class BSLocation {
         this.isMiss=false;
     }
 
+    public BSLocation(BSLocation original){
+        this.isWater=original.isWater;
+        this.isShip=original.isShip;
+        this.isHit=original.isHit;
+        this.isMiss=original.isMiss;
+    }
+
     public void setSpot(int spotType) {
         if (spotType == 2) {
             this.isShip = true;
