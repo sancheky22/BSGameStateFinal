@@ -163,28 +163,30 @@ public class BSGameState {
 
     public int checkSpot(int x, int y, int playerNum) {
         if (this.playerID == playerNum && playerNum == 0) {
-            if (this.p1Board[y][x].isWater) {
+            if (this.p1Board[y][x].isWater==true) {
                 return 1;
-            } else if (this.p1Board[y][x].isShip) {
+            } else if (this.p1Board[y][x].isShip==true) {
                 return 2;
-            } else if (this.p1Board[y][x].isHit) {
+            } else if (this.p1Board[y][x].isHit==true) {
                 return 3;
-            } else if (this.p1Board[y][x].isMiss) {
+            } else if (this.p1Board[y][x].isMiss==true) {
                 return 4;
             }
         }
-        if (this.playerID == playerNum && playerNum == 1) {
-            if (this.p2Board[y][x].isWater) {
+        else if (this.playerID == playerNum && playerNum == 1) {
+            if (this.p2Board[y][x].isWater==true) {
                 return 1;
-            } else if (this.p2Board[y][x].isShip) {
+            } else if (this.p2Board[y][x].isShip==true) {
                 return 2;
-            } else if (this.p2Board[y][x].isHit) {
+            } else if (this.p2Board[y][x].isHit==true) {
                 return 3;
-            } else if (this.p2Board[y][x].isMiss) {
+            } else if (this.p2Board[y][x].isMiss==true) {
                 return 4;
             }
         }
-        return 0;
+
+            return 0;
+
     }
 
     public void changeTurn() {
