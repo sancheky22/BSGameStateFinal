@@ -131,7 +131,30 @@ public class BSGameState {
     public boolean fire(String[][] bsBoard) {
         return false; // default return value
     }
-    
+
+    public void setSpot(int spotType){
+        if(spotType==2){
+            this.isShip=true;
+
+            this.isHit=false;
+            this.isMiss=false;
+            this.isWater=false;
+        }
+        if(spotType==3){
+            this.isHit=true;
+
+            this.isShip=false;
+            this.isWater=false;
+            this.isMiss=false;
+        }
+        if(spotType==4){
+            this.isMiss=true;
+
+            this.isShip=false;
+            this.isHit=false;
+            this.isWater=false;
+        }
+    }
 
     @Override
     public String toString() {

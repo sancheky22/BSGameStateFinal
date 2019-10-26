@@ -7,12 +7,12 @@ package com.example.bsgamestatefinal;
  * **/
 
 public class BSLocation {
-    private boolean isWater;
-    private boolean isShip;
-    private boolean isHit;
-    private boolean isMiss;
+    public boolean isWater;
+    public boolean isShip;
+    public boolean isHit;
+    public boolean isMiss;
 
-    private BSGameState myGameState;
+    public BSGameState myGameState;
 
     public BSLocation(){
         this.isWater=true;
@@ -45,27 +45,5 @@ public class BSLocation {
      *  isWater is by default true and will never need to be set again
      */
 
-    public void setSpot(int spotType){
-        if(spotType==2){
-            this.isShip=true;
 
-            this.isHit=false;
-            this.isMiss=false;
-            this.isWater=false;
-        }
-        if(spotType==3){
-            this.isHit=true;
-
-            this.isShip=false;
-            this.isWater=false;
-            this.isMiss=false;
-        }
-        if(spotType==4){
-            this.isMiss=true;
-
-            this.isShip=false;
-            this.isHit=false;
-            this.isWater=false;
-        }
-    }
 }
