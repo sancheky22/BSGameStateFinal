@@ -147,7 +147,6 @@ public class BSGameState {
         else{
             return false;
         }
-        return false;
     }
 
 
