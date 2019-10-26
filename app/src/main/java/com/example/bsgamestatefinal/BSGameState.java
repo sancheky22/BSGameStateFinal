@@ -10,7 +10,7 @@ public class BSGameState {
 
     public int p1TotalHits;
     public int p2TotalHits;
-    public int playerTurn;
+    public int playerID;
     public int p1ShipsAlive;
     public int p1ShipsSunk;
     public int p2ShipsAlive;
@@ -28,7 +28,7 @@ public class BSGameState {
 
 
     public BSGameState() {
-        this.playerTurn = 1;
+        this.playerID = 1;
         this.p1TotalHits = 0;
         this.p2TotalHits = 0;
         this.p1ShipsAlive = 10;
@@ -48,7 +48,7 @@ public class BSGameState {
 
     // Copy Constructor
     public BSGameState(BSGameState original) {
-        this.playerTurn = 1;
+        this.playerID = 1;
         this.p1TotalHits = 0;
         this.p2TotalHits = 0;
         this.p1ShipsAlive = 10;
@@ -119,19 +119,33 @@ public class BSGameState {
     }*/
 
     // gets which players turn it is
-    public int getPlayerTurn() {
-        return this.playerTurn;
+    public int getPlayerID() {
+        return this.playerID;
     }
 
     // sets current players turn
     public void setPlayerTurn(int playerTurn) {
-        this.playerTurn = playerTurn;
+        this.playerID = playerTurn;
     }
 
     public boolean fire(String[][] bsBoard) {
         return false; // default return value
     }
-    
+
+    public boolean addShip(int playerNum, BSShip ship){
+        if(playerNum == this.getPlayerID()) {
+
+            for (int row = ship.gety1(); row ==ship.gety2(); row++){
+                for (int col = ship.getx1(); row == ship.getx2(); col++){
+                    if(playerNum == 0){
+                        this.p1Board[row][col].setspot(2);
+                    } else{
+                        this.p2Board[row][col].setspot(2);
+                    }
+                }
+            }
+        }
+    }
 
     @Override
     public String toString() {
