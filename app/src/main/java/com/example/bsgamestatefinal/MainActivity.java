@@ -52,8 +52,22 @@ public class MainActivity extends AppCompatActivity {
             multiLineText.append("getPlayerTurn(): Get whether it is player1's turn or player2's turn.\n");
             firstInstance.setPlayerID(0);
             multiLineText.append("setPlayerTurn(): Set the current turn to 0 (or player1)\n");
-            //TODO:call placeShip method to add a ship
-            //TODO:call fire method to hit ship
+            //call addShip method to add a ship
+            firstInstance.addAllShips(0);
+            multiLineText.append("addAllShips(): Place all ships on the board for player 1 in initial locations and horizontally:\n");
+            multiLineText.append("Place carrier row 1, place destroyer row 2, place cruiser row 3, place submarine row 4.\n");
+            firstInstance.setPlayerID(1);
+            multiLineText.append("setPlayerTurn(): Set the current turn to 1 (or player2)\n");
+            firstInstance.addAllShips(1);
+            multiLineText.append("addAllShips(): Place all ships on the board for player 2 in initial locations and horizontally:\n");
+            multiLineText.append("Place carrier row 1, place destroyer row 2, place cruiser row 3, place submarine row 4.\n");
+            //call fire method to hit ship
+            firstInstance.fire(1,1);
+            multiLineText.append("Fire at coordinates 1,1. Changes values of location.\n");
+            //call checkspot
+            String check1 = firstInstance.spotString(1,1, firstInstance.getPlayerID());
+            multiLineText.append("Check coordinates 1,1.\n");
+            multiLineText.append(check1 + "\n");
 
             BSGameState thirdInstance = new BSGameState(); //create another GameState instance using default constructor
             BSGameState fourthInstance = new BSGameState(thirdInstance); //create copy of thirdInstance

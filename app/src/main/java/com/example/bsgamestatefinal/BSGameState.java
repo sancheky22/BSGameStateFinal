@@ -142,31 +142,65 @@ public class BSGameState {
                     }
                 }
             }
-        return true;
-        }
-        else{
+            return true;
+        } else {
             return false;
         }
     }
 
 
-    public int checkSpot(BSLocation location){
-        if(location.isWater){
-            return 1;
+    public int checkSpot(int x, int y, int playerNum) {
+        if (this.playerID == playerNum && playerNum == 0) {
+            if (p1Board[y][x].isWater) {
+                return 1;
+            } else if (p1Board[y][x].isShip) {
+                return 2;
+            } else if (p1Board[y][x].isHit) {
+                return 3;
+            } else if (p1Board[y][x].isMiss) {
+                return 4;
+            }
         }
-        else if(location.isShip){
-            return 2;
+        if (this.playerID == playerNum && playerNum == 1) {
+            if (p2Board[y][x].isWater) {
+                return 1;
+            } else if (p2Board[y][x].isShip) {
+                return 2;
+            } else if (p2Board[y][x].isHit) {
+                return 3;
+            } else if (p2Board[y][x].isMiss) {
+                return 4;
+            }
         }
-        else if(location.isHit){
-            return 3;
-        }
-        else if(location.isMiss){
-            return 4;
-        }
-        else{
-            return 0;
+        return 0;
+    }
+
+    public void changeTurn() {
+        if (this.playerID == 0) {
+            this.setPlayerID(1);
+        } else {
+            this.setPlayerID(0);
         }
     }
+
+    public boolean addAllShips(int playerNum) {
+        if (this.playerID == playerNum) {
+            BSShip carrier = new BSShip(1, 5, 1, 1, playerNum, 5);
+            BSShip destroyer = new BSShip(1, 4, 2, 2, playerNum, 4);
+            BSShip cruiser = new BSShip(1, 3, 3, 3, playerNum, 3);
+            BSShip submarine = new BSShip(1, 2, 4, 4, playerNum, 2);
+
+            addShip(playerNum, carrier);
+            addShip(playerNum, destroyer);
+            addShip(playerNum, cruiser);
+            addShip(playerNum, submarine);
+
+            return true;
+        }
+
+        return false;
+    }
+
 
     @Override
     public String toString() {
@@ -184,30 +218,30 @@ public class BSGameState {
 
         if (this.getPlayerID() == 0) {
             BSLocation temp = this.p1Board[y][x];
-            if (checkSpot(temp) == 3 || checkSpot(temp) == 4) {
+            if (checkSpot(x, y, 0) == 3 || checkSpot(x, y, 0) == 4) {
                 this.p1Board[y][x] = temp;
                 return false;
-            } else if (checkSpot(temp) == 2) {
+            } else if (checkSpot(x, y, 0) == 2) {
                 this.p1TotalHits = this.p1TotalHits + 1;
                 temp.setSpot(3);
                 this.p1Board[y][x] = temp;
                 return true;
-            } else if (checkSpot(temp) == 1) {
+            } else if (checkSpot(x, y, 0) == 1) {
                 temp.setSpot(4);
                 this.p1Board[y][x] = temp;
                 return false;
             }
         } else if (this.getPlayerID() == 1) {
             BSLocation temp = this.p2Board[y][x];
-            if (checkSpot(temp) == 3 || checkSpot(temp) == 4) {
+            if (checkSpot(x, y, 1) == 3 || checkSpot(x, y, 1) == 4) {
                 this.p2Board[y][x] = temp;
                 return false;
-            } else if (checkSpot(temp) == 2) {
+            } else if (checkSpot(x, y, 1) == 2) {
                 this.p2TotalHits = this.p2TotalHits + 1;
                 temp.setSpot(3);
                 this.p2Board[y][x] = temp;
                 return true;
-            } else if (checkSpot(temp) == 1) {
+            } else if (checkSpot(x, y, 1) == 1) {
                 temp.setSpot(4);
                 this.p2Board[y][x] = temp;
                 return false;
@@ -216,6 +250,28 @@ public class BSGameState {
         return false;
     }
 
+
+    public String spotString(int x, int y, int playerNum) {
+        String spot = new String("");
+        switch (checkSpot(x, y, playerNum)) {
+            case 1:
+                spot = "Location " + y + "," + x + " is Water";
+                break;
+
+            case 2:
+                spot = "Location " + y + "," + x + " is Ship";
+                break;
+
+            case 3:
+                spot = "Location " + y + "," + x + " is Hit";
+                break;
+
+            case 4:
+                spot = "Location " + y + "," + x + " is Miss";
+                break;
+        }
+        return spot;
+    }
 }
 
     /**
