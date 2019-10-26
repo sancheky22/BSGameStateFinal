@@ -21,4 +21,20 @@ public class BSShip {
         this.shipHealth=shipSize;
         this.isSunk=false;
     }
+
+    public int getx1(){
+        return this.xCoord1;
+    }
+
+    public int getx2(){
+        return this.xCoord2;
+    }
+
+    public int gety1(){
+        return this.yCoord1;
+    }
+
+    public int gety2(){
+        return this.yCoord2;
+    }
 }
