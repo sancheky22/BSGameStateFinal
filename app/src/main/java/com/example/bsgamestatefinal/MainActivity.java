@@ -48,9 +48,9 @@ public class MainActivity extends AppCompatActivity {
             BSGameState secondInstance = new BSGameState(firstInstance); //create copy of firstInstance
 
             //call each method in game state class at least once, print descriptions to multiLineText
-            firstInstance.getPlayerTurn();
+            firstInstance.getPlayerID();
             multiLineText.append("getPlayerTurn(): Get whether it is player1's turn or player2's turn.\n");
-            firstInstance.setPlayerTurn(0);
+            firstInstance.setPlayerID(0);
             multiLineText.append("setPlayerTurn(): Set the current turn to 0 (or player1)\n");
             //TODO:call placeShip method to add a ship
             //TODO:call fire method to hit ship

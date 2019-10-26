@@ -124,7 +124,7 @@ public class BSGameState {
     }
 
     // sets current players turn
-    public void setplayerID(int playerID) {
+    public void setPlayerID(int playerID) {
         this.playerID = playerID;
     }
 
@@ -137,12 +137,16 @@ public class BSGameState {
             for (int row = ship.gety1(); row == ship.gety2(); row++) {
                 for (int col = ship.getx1(); row == ship.getx2(); col++) {
                     if (playerNum == 0) {
-                        this.p1Board[row][col].setspot(2);
+                        this.p1Board[row][col].setSpot(2);
                     } else {
-                        this.p2Board[row][col].setspot(2);
+                        this.p2Board[row][col].setSpot(2);
                     }
                 }
             }
+        return true;
+        }
+        else{
+            return false;
         }
     }
 
