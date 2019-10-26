@@ -37,7 +37,7 @@ public class BSGameState {
         this.p2ShipsSunk = 0;
         this.isHit = false;
         this.phaseOfGame = "SetUp";
-        this.shotLocations = null;
+
         this.shipLocations = null;
         this.p1Board = new BSLocation[10][10];
         this.p2Board=new BSLocation[10][10];
